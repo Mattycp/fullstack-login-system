@@ -7,11 +7,24 @@ const router = express.Router();
 
 //========================================================== Cadastro ====================================================================
 router.post("/register", async (req, res) => {
-  const { name, email, password } = req.body;
+  const { name, email, password, confirmPassword } = req.body;
 
-  const hashedPassword = await bcrypt.hash(password, 10);
+  if(!email){
+    return res.status(400).json({error: 'Email obrigatório'})
+  }
+  if(!name){
+    return res.status(400).json({error: 'Nome obrigatório'})
+  }
+  if(!password || !confirmPassword){
+    return res.status(400).json({error: 'Senha obrigatória'})
+  }
+  if(password !== confirmPassword){
+    return res.status(400).json({error: 'As senhas não coincidem'})
+  }
 
   try {
+    const hashedPassword = await bcrypt.hash(password, 10);
+
     await db.query(
       "INSERT INTO users (name, email, password) VALUES (?, ?, ?)",
       [name, email, hashedPassword],

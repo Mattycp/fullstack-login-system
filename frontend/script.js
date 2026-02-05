@@ -32,11 +32,17 @@ async function register(){
   const name = document.getElementById('name').value;
   const email = document.getElementById('email').value;
   const password = document.getElementById('password').value;
+  const confirmPassword = document.getElementById('confirmPassword').value;
+
+  if(password !== confirmPassword){
+    alert('As senhas não conincidem')
+    return
+  }
 
   const res = await fetch('/auth/register', {
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify({name, email, password})
+    body: JSON.stringify({name, email, password, confirmPassword})
   });
 
   const data = await res.json();
