@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 flex items-center justify-center h-screen">
+
+    <div class="bg-gray-800 p-8 rounded-xl w-96 text-center">
+        <h1 class="text-white text-2xl mb-4"> Seja bem-vindo, <span id="nomeUsuario" class="text-blue-400 font-bold"></span></h1>
+
+        <p class="text-gray-300 mb-6">
+            Você está logado com sucesso
+        </p>
+
+        <button onclick="logout()" class="w-full bg-red-600 hover:bg-red-700 text-white p-2 rounded">
+            Sair
+        </button>
+    </div>
+
+    <script src="script.js"></script>
+    <script>verificarAutenticacao();</script>
+</body>
+</html>

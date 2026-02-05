@@ -11,9 +11,10 @@ async function login() {
 
   const data = await res.json();
 
-  if (data.token) {
+  if (data.success) {
     alert("Login realizado com sucesso!");
-    localStorage.setItem("token", data.token);
+    localStorage.setItem("nomeUsuario", data.nome);
+    window.location.href = 'profile.html'
   } else {
     alert(data.error);
   }
@@ -53,4 +54,20 @@ async function register(){
   }else{
     alert(data.error);
   }
+}
+
+// ================================================= Perfil ==========================================================================
+function verificarAutenticacao(){
+  const nome = localStorage.getItem('nomeUsuario');
+
+  if(!nome){
+    window.location.href = '/';
+  }
+
+  document.getElementById('nomeUsuario').innerText = nome;
+}
+
+function logout(){
+  localStorage.removeItem('nomeUsuario');
+  window.location.href = '/'
 }

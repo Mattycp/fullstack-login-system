@@ -37,6 +37,12 @@
       </button>
     </div>
 
+    <script>
+      const nome = localStorage.getItem('nomeUsuario');
+      if(nome){
+        window.location.href = 'profile.html';
+      }
+    </script>
     <script src="script.js"></script>
   </body>
 </html>
