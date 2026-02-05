@@ -7,11 +7,11 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const PUBLIC_PATH = path.join(__dirname, '..', 'frontend');
+const PUBLIC_PATH = path.join(__dirname, '..', 'pages');
 app.use(express.static(PUBLIC_PATH));
 
 app.get('/', (req, res) => {
-  res.sendFile(path.join(PUBLIC_PATH, '..', 'frontend', 'login.html'));
+  res.sendFile(path.join(PUBLIC_PATH, '..', 'pages', 'login.html'));
 });
 
 app.use('/auth', require('./routes/auth'));
