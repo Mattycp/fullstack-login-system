@@ -1,4 +1,3 @@
-require('dotenv').config();
 const mysql = require('mysql2/promise');
 
 module.exports = mysql.createPool({
@@ -8,3 +7,4 @@ module.exports = mysql.createPool({
   database: process.env.DB_NAME,
   port: process.env.DB_PORT
 });
+

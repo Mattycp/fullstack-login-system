@@ -43,7 +43,7 @@ router.post("/login", async (req, res) => {
     return res.status(401).json({ error: "Senha inválida" });
   }
 
-  const token = jwt.sign({ id: user.id }, "SECRET_KEY", { expiresIn: "1h" });
+  const token = jwt.sign({ id: user.id }, "process.env.JWT_SECRET", { expiresIn: "1h" });
 
   res.json({ success: true, nome: user.name });
 });
