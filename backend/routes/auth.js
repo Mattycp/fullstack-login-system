@@ -7,22 +7,13 @@ const router = express.Router();
 
 //========================================================== Cadastro ====================================================================
 router.post("/register", async (req, res) => {
-  const { name, email, password, confirmPassword } = req.body;
-
-  if(!email){
-    return res.status(400).json({error: 'Email obrigatório'})
-  }
-  if(!name){
-    return res.status(400).json({error: 'Nome obrigatório'})
-  }
-  if(!password || !confirmPassword){
-    return res.status(400).json({error: 'Senha obrigatória'})
-  }
-  if(password !== confirmPassword){
-    return res.status(400).json({error: 'As senhas não coincidem'})
-  }
-
   try {
+    const { name, email, password, confirmPassword } = req.body;
+
+    if(!name || !email || !password){
+      return res.status(400).json({error: 'Dados inválidos'})
+    }
+
     const hashedPassword = await bcrypt.hash(password, 10);
 
     await db.query(
